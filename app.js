@@ -19,7 +19,7 @@ const profileRoutes=require("./routes/profile");
 const { error } = require("console");
 const db=process.env.MONGO_ATLAS;
 const MongoStore=require("connect-mongo");
-const mongoStoreSecret=process.env.mongoStoreSecret
+const mongoStoreSecret="sfkjahsefjhuenrfkwhfiuwewqmdkJKJSK"
 
 const store = MongoStore.create({
     mongoUrl: db,
