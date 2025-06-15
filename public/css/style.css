@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: black !important;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Index page Post styling */
+.post {
+  border: 2px solid black;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid #333;
+}
+.post:hover {
+  background-color: #33333344;
+}
+.container {
+  height: 100vh !important;
+  overflow-y: scroll;
+  overscroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.fa-solid.fa-code {
+  font-size: 3rem;
+  color: white;
+  padding-left: 20px;
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem red);
+}
+
+span.fs-4 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  font-size: 2rem !important;
+  color: rgb(245, 240, 240);
+  filter: drop-shadow(0.5rem 0.5rem 0.5rem brown);
+}
+
+.d-flex.flex-column.flex-shrink-0.p-3.text-white.bg-dark {
+  background: black !important;
+  width: 350px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+li .link-dark.rounded {
+  color: white !important;
+}
+
+button.btn.btn-toggle.align-items-center.rounded.text-white {
+  color: whitesmoke;
+  margin: 1rem;
+  font-weight: 600;
+  outline: none !important;
+  /* border:2px solid rgb(144, 144, 207); */
+  box-shadow: 0.3rem 0.2rem 0.5rem rgb(144, 144, 207);
+}
+
+#account-collapse ul li a {
+  color: whitesmoke !important;
+  text-decoration: none;
+}
+
+#account-collapse ul li {
+  list-style-type: none;
+}
+
+li a.nav-link {
+  color: white;
+  font-size: 1.3rem;
+  padding: 0.9rem;
+}
+
+li a.nav-link i {
+  padding-right: 0.4rem;
+}
+
+li a.nav-link:hover {
+  color: #ffffff73 !important;
+  opacity: 0.7;
+}
+
+li a.nav-link:focus {
+  color: rgb(255, 0, 242) !important;
+}
+
+/* a[href="/posts/new"]{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+} */
+
+/* Sidebar button post styling */
+
+li a button.post {
+  width: 85%;
+  border-radius: 2.5rem;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 10px;
+}
+
+li a button.post:hover {
+  color: black;
+  background: white;
+}
+
+.reply:hover {
+  opacity: 1 !important;
+}
+
+input[name="comment[comment]"] {
+  border: none;
+  outline: none;
+  height: 100px;
+}
+
+input[name="comment[comment]"]::placeholder {
+  color: #cccccc86;
+  opacity: 1;
+}
+
+input[name="comment[comment]"]:focus {
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+/* Dropdown */
+.dropdown-menu .dropdown-item:focus {
+  background-color: none !important;
+  box-shadow: rgba(0, 255, 255, 0.186);
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: rgba(118, 71, 161, 0.708) !important;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 255, 255, 0.186);
+}
+
+.user {
+  position: relative;
+  bottom: -330px;
+}
+
+.user a {
+  margin-bottom: 5px;
+}
+
+/* User Posts Menu Icon */
+
+.post-option-icon {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 1.3rem !important;
+  color: #6c757d;
+}
+
+.post-option-icon:hover {
+  border-radius: 100%;
+  background-color: rgba(0, 255, 255, 0.103);
+  color: rgba(0, 255, 255, 0.781);
+}
+
+.menu {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-content {
+  display: none;
+  position: absolute;
+  width: 200px;
+  right: 0;
+  background-color: black;
+  border: 1px solid #333;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 10px #333;
+  z-index: 1;
+}
+
+.menu-content.show {
+  display: block !important;
+}
+
+.menu-option {
+  width: 100%;
+  margin: none !important;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  text-align: start;
+  padding: 1rem;
+  border: none;
+}
+
+.show-post-card-btns a:hover{
+  background-color: #26252577 !important;
+}
+
+.show-post-card-btns form:hover{
+  background-color: #26252577 !important;
+}
+
+
+/* Index page Styling */
+.post-card {
+  background: linear-gradient(145deg, #2a2a2a, #1e1e1e);
+  border: 1px solid #404040;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-color: #555;
+}
+
+.post-card a {
+  flex-grow: 1;
+}
+
+.code-block {
+  background: #0d1117;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  overflow: hidden;
+}
+
+.code-block pre {
+  margin: 0;
+  background: transparent !important;
+  border: none !important;
+}
+
+.code-block code {
+  background: transparent !important;
+  color: #e6edf3;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.posts {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.menu {
+  position: relative;
+  z-index: 10;
+}
+
+.menu-content {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #2a2a2a;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  min-width: 150px;
+  display: none;
+}
+
+.menu-content.show {
+  display: block;
+}
+
+.menu-option {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.menu-option:hover {
+  background-color: #404040;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .post-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .posts {
+    padding: 0.5rem;
+  }
+  
+  .d-flex.align-items-center.gap-2 {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+}
+
+.following-btn:hover{
+  border-color: red;
+}
+
+/* Like button */
+
+/* .fa-solid.fa-heart{
+  display: none;
+} */
+.fa-heart{
+  padding: 0.3rem;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+}
+
+.fa-heart:hover{
+  opacity: 0.8;
+  color: red !important;
+}

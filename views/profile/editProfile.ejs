@@ -1,0 +1,37 @@
+<% layout("./boilerplate/boilerplate") -%>
+
+<h1 class="text-white">Hi, <%= user.username %></h1>
+
+<div class="container mt-5">
+  <div class="bg-custom-dark">
+    <h2 class="mb-4 text-light">Edit Profile</h2>
+    <form action="/profile/<%= user._id %>?_method=PUT" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="userName" class="form-label text-light">Name</label>
+        <input type="text" name="user[name]" class="form-control bg-secondary" id="name" placeholder="Enter your Name" value="<%= user.name %>" required />
+        <div class="invalid-feedback">Please enter your name</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="userUsername" class="form-label text-light">username</label>
+        <input type="text" name="user[username]" class="form-control bg-secondary" id="username" placeholder="Enter your username" value="<%= user.username %>" required />
+        <div class="invalid-feedback">Username cannot be empty</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="userEmail" class="form-label text-light">Email</label>
+        <input type="email" name="user[email]" class="form-control bg-secondary" id="email" placeholder="Enter your email" value="<%= user.email %>" required />
+        <div class="invalid-feedback">Email cannot be empty</div>
+      </div>
+
+      <!-- Image here -->
+       <div class="mb-3">
+        <label for="userImage" class="form-label text-light">Upload Image</label>
+        <input type="file" name="user[image]" class="form-control bg-secondary" id="image" placeholder="Upload Your Image Here..." required />
+        <div class="invalid-feedback">Please provide an image</div>
+       </div>
+
+      <button type="submit" class="btn btn-success">Update Profile</button>
+    </form>
+  </div>
+</div>

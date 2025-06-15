@@ -1,0 +1,30 @@
+<% layout("./boilerplate/boilerplate") -%>
+
+    <div class="register-container container text-white">
+        <h1 class="mb-4 text-center">Login Here</h1>
+        <form action="/login" method="POST" enctype="application/x-www-form-urlencoded" class="needs-validation m-3" novalidate>
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control bg-dark text-white" id="username" name="user[username]" required>
+                <div class="invalid-feedback">
+                    Enter your username.
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control bg-dark text-white" id="password" name="user[password]"
+                    minlength="6" required>
+                <div class="invalid-feedback">
+                    Please enter your password 
+                </div>
+            </div>
+
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-outline-success w-30">Login</button>
+        </form>
+    </div>

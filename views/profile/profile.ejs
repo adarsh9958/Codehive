@@ -1,0 +1,99 @@
+<% layout("./boilerplate/boilerplate") -%>
+<% if(currUser){%>
+  <%- include("../layouts/navbar") %>
+<% } %>
+
+<div class="container">
+  <!-- Profile Card -->
+  <div class="card text-light p-4 rounded-4 mb-5" style="background-color: black; border-bottom: 1px solid #333">
+    <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+      <!-- Profile Image -->
+      <div>
+        <img src="<%= userProfile.image.url %>" alt="<%= userProfile.name %>" class="rounded-circle border border-secondary" style="height: 150px; width: 150px; object-fit: cover" />
+      </div>
+
+      <!-- Profile Details -->
+      <div class="flex-grow-1">
+        <h2 class="fw-bold text-white"><%= userProfile.name %></h2>
+        <p class="text-secondary mb-1">@<%=userProfile.username %></p>
+
+        <p class="text-secondary small">
+          Joined: <%= new
+          Date(userProfile.createdAt).toLocaleDateString("en-IN") %>
+        </p>
+        <p>
+          <span> <a href="/profile/<%=userProfile.username %>/following" class="text-white text-decoration-none"><b><%= userProfile.following.length %></b> following </a></span>
+          <span> <a href="/profile/<%=userProfile.username %>/follower" class="text-white text-decoration-none"><b><%= userProfile.followers.length %></b> followers </a></span>
+        </p>
+        <div class="d-flex gap-2 mt-3">
+          <% if(String(currUser._id) !== String(userProfile._id)){ %>
+          <form action="/profile/<%= userProfile._id %>?_method=PATCH" method="post">
+            <%
+            let isFollowing=userProfile.followers.some(follower=>String(follower)===String(currUser._id)) 
+            let isFollower=currUser.followers.some(follower=>String(follower)===String(userProfile._id)) 
+            %>
+            <button class="btn btn-outline-light btn-sm rounded-pill following" id="following" style="font-weight: 800;">
+              <%= isFollowing ?"Following":(isFollower ? "Follow Back":"Follow") %>
+            </button>
+          </form>
+          <% } %>
+          <% if(String(currUser._id)===String(userProfile._id)){ %>
+            <form action="/profile/<%= userProfile.username %>/edit" method="get" class="d-flex ">
+              <button class="btn btn-outline-secondary fw-bold text-white btn-sm rounded-pill following" id="following" style="padding: 0.1rem 0.9rem; border: 1px solid #3d3c3c;">
+                Edit Profile
+              </button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="posts">
+    <% posts.forEach(post => { %>
+    <div class="post codeHive-post d-flex post-card" data-created-at="<%= post.createdAt %>" style="gap: 1rem">
+      <div class="d-flex w-20"></div>
+      <a href="/posts/<%= post._id %>" class="text-decoration-none flex-grow-1">
+        <div class="d-flex flex-column w-80">
+          <div class="d-flex align-items-center mb-3">
+            <img src="<%= post.owner.image.url %>" alt="<%= post.owner.name %>" height="50" width="50" style="object-fit: cover; margin-right: 1rem" class="rounded-pill" />
+            <div class="d-flex align-items-center gap-2">
+              <p class="name text-secondary mb-0">
+                <b><%= post.owner.name %></b>
+              </p>
+              <p class="username mb-0" style="color: teal">
+                @<%= post.owner.username %>
+              </p>
+              <p class="time text-secondary mb-0">Posted : Calculating...</p>
+            </div>
+          </div>
+          <h1 class="text-white mb-3"><%= post.title %></h1>
+          <p class="text-secondary mb-3"><%=post.content %></p>
+          <div class="code-block mb-3">
+            <pre><code style="border-radius: 0.5rem; background-color: #1a1a1a; padding: 1rem; border: 1px solid #333;"><%=post.code %></code></pre>
+          </div>
+        </div>
+      </a>
+      <% if (String(currUser)===String(post.owner._id)) { %>
+      <div class="menu">
+        <!-- 3 Dot Icon -->
+        <i class="fa-solid fa-ellipsis text-secondary fs-4 post-option-icon" id="moreBtn" style="cursor: pointer"></i>
+
+        <!-- Popup Card -->
+        <div class="menu-content" id="menuCard">
+          <div class="d-flex flex-column gap-0 text-start show-post-card-btns">
+            <a href="/posts/<%= post._id %>/edit" class="d-flex align-items-center mb-0" style="text-decoration: none; padding: 0rem 1rem">
+              <i class="fa-solid fa-pen-to-square text-white"></i>
+              <button class="me-3 menu-option">Edit Post</button>
+            </a>
+            <form action="/posts/<%= post._id %>?_method=DELETE" method="post" class="d-flex mt-0 align-items-center" style="padding: 0rem 1rem">
+              <i class="fa-solid fa-trash text-white"></i>
+              <button class="menu-option">Delete Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <% }) %>
+  </div>
+</div>

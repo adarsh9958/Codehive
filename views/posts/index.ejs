@@ -1,0 +1,135 @@
+<% layout("./boilerplate/boilerplate") %>
+<% if(currUser){%>
+  <%- include("../layouts/navbar") %>
+<% } %>
+<div class="posts">
+  <form class="d-flex pt-2">
+  <div class="position-relative w-100 d-flex g-2 m-2">
+    <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+    <input id="userSearchInput" class="form-control me-2 bg-dark rounded-pill ps-5 p-2 text-white" type="text" placeholder="Search users..." aria-label="Search" style="background-color: black !important; border: 1px solid #3333338a;">
+    <div id="searchResults" class="bg-dark text-light rounded-4 mt-2 p-2" style="display: none;position: absolute; z-index: 1000; width: 100%;max-height: 200px;overflow-y: auto;"></div>
+  </div>
+</form>
+  <% posts.forEach(post => { %>
+  <div
+    class="post codeHive-post d-flex post-card"
+    data-created-at="<%= post.createdAt %>"
+    style="gap: 1rem"
+  >
+    <div class="d-flex w-20"></div>
+    <a href="/posts/<%= post._id %>" class="text-decoration-none flex-grow-1">
+      <div class="d-flex flex-column w-80">
+        <div class="d-flex align-items-center mb-3">
+          <img
+            src="<%= post.owner.image.url %>"
+            alt="<%= post.owner.name %>"
+            height="50"
+            width="50"
+            style="object-fit: cover; margin-right: 1rem"
+            class="rounded-pill"
+          />
+          <div class="d-flex align-items-center gap-2">
+            <p class="name text-secondary mb-0">
+              <b><%= post.owner.name %></b>
+            </p>
+            <p class="username mb-0" style="color: teal">
+              @<%= post.owner.username %>
+            </p>
+            <p class="time text-secondary mb-0">Posted : Calculating...</p>
+          </div>
+        </div>
+        <h1 class="text-white mb-3"><%= post.title %></h1>
+        <p class="text-secondary mb-3"><%=post.content %></p>
+        <div class="code-block mb-3">
+          <pre><code style="border-radius: 0.5rem; background-color: #1a1a1a; padding: 1rem; border: 1px solid #333;"><%=post.code %></code></pre>
+        </div>
+        
+      </div>
+    </a>
+    <% if (String(currUser)===String(post.owner._id)) { %>
+    <div class="menu">
+      <!-- 3 Dot Icon -->
+      <i
+        class="fa-solid fa-ellipsis text-secondary fs-4 post-option-icon"
+        id="moreBtn"
+        style="cursor: pointer"
+      ></i>
+
+      <!-- Popup Card -->
+      <div class="menu-content" id="menuCard">
+        <div class="d-flex flex-column gap-0 text-start show-post-card-btns">
+          <a
+            href="/posts/<%= post._id %>/edit"
+            class="d-flex align-items-center mb-0"
+            style="text-decoration: none; padding: 0rem 1rem"
+          >
+            <i class="fa-solid fa-pen-to-square text-white"></i>
+            <button class="me-3 menu-option">Edit Post</button>
+          </a>
+          <form
+            action="/posts/<%= post._id %>?_method=DELETE"
+            method="post"
+            class="d-flex mt-0 align-items-center"
+            style="padding: 0rem 1rem"
+          >
+            <i class="fa-solid fa-trash text-white"></i>
+            <button class="menu-option">Delete Post</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <% }) %>
+</div>
+
+
+ <script>
+    let arrOfUsers = <%- JSON.stringify(users) %>;
+
+    let userSearchInput = document.querySelector("#userSearchInput");
+    let searchResults = document.querySelector("#searchResults");
+
+    userSearchInput.addEventListener("input", () => {
+        let searchValue = userSearchInput.value.trim().toLowerCase();
+
+        if (searchValue === "") {
+            searchResults.style.display = "none";
+            searchResults.innerHTML = "";
+            return;
+        }
+
+        let matchedUsers = arrOfUsers.filter(user => user.username.toLowerCase().includes(searchValue));
+
+        if (matchedUsers.length > 0) {
+            searchResults.style.display = "block";
+            searchResults.innerHTML = matchedUsers.map(user => `
+                <div class="d-flex align-items-center gap-2 p-2 rounded-3 search-item" style="cursor:pointer;">
+                    <img src="${user.image.url}" alt="${user.name}" class="rounded-circle" style="height:30px; width:30px; object-fit:cover;">
+                    <div>
+                        <p class="mb-0 text-white fw-bold">${user.name}</p>
+                        <small class="text-secondary">@${user.username}</small>
+                    </div>
+                </div>
+            `).join("");
+
+            // Add click event on every matched item
+            document.querySelectorAll(".search-item").forEach((item, index) => {
+                item.addEventListener("click", () => {
+                    window.location.href = `/profile/${matchedUsers[index].username}`;
+                });
+            });
+        } else {
+            searchResults.style.display = "block";
+            searchResults.innerHTML = `<p class="mb-0 text-secondary p-2">No user found</p>`;
+        }
+    });
+
+    // Optional: hide dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest("#userSearchInput") && !e.target.closest("#searchResults")) {
+            searchResults.style.display = "none";
+        }
+    });
+</script>
+

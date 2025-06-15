@@ -1,0 +1,28 @@
+<% layout("./boilerplate/boilerplate") -%>
+
+<div class="container">
+  <% followers.forEach(follower => { %>
+    <div class="card d-flex flex-row text-white" style="background-color: black;">
+      <div class="w-20">
+        <img src="<%= follower.image.url %>" alt="<%= follower.name %>" style="width: 50px;height: 50px;border-radius: 100%;object-fit: cover; margin: 1rem;">
+      </div>
+      <div class="d-flex gap-2 w-60 p-3">
+        <p class="p-0 m-0"><b><%= follower.name %></b></p>
+        <p class="p-0 m-0 text-secondary">@<%= follower.username %></p>
+      </div>
+      <div class="d-flex gap-2 mt-3 w-20 m-3">
+        <% if (String(currUser._id) !== String(follower._id)) { %>
+          <form action="/profile/<%= follower._id %>?_method=PATCH" method="post">
+            <%
+              let isFollowing = follower.followers.some(id => String(id) === String(currUser._id));
+              let isFollower = currUser.followers.some(id => String(id) === String(follower._id));
+            %>
+            <button class="btn btn-outline-light btn-sm rounded-pill following" id="following" style="font-weight: 800;">
+              <%= isFollowing ? "Following" : (isFollower ? "Follow Back" : "Follow") %>
+            </button>
+          </form>
+        <% } %>
+      </div>
+    </div>
+  <% }) %>
+</div>
