@@ -1,0 +1,45 @@
+<% if ((success && success.length) || (error && error.length)) { %>
+<div class="main-div" id="flash-div">
+  <% if (success && success.length) { %>
+  <div
+    class="msg alert alert-success d-flex align-items-center justify-content-between rounded shadow-sm p-3 m-3 rounded-pill"
+    role="alert"
+    style="background-color: #d1e7dd; border: 1px solid #badbcc"
+  >
+    <div class="flash-success flash-msg d-flex align-items-center">
+      <i
+        class="fa-regular fa-circle-check fs-3 me-3"
+        style="color: #0f5132"
+      ></i>
+      <span class="fs-5 text-success m-0"> <%= success %> </span>
+    </div>
+    <button
+      type="button"
+      class="btn-close ms-3"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% } %> <% if (error && error.length) { %>
+  <div
+    class="msg alert alert-danger d-flex align-items-center justify-content-between rounded shadow-sm p-3 m-3 rounded-pill"
+    role="alert"
+    style="background-color: #a75d638c; border: 1px solid #f5c2c7"
+  >
+    <div class="flash-error flash-msg d-flex align-items-center rounded">
+      <i
+        class="fa-solid fa-triangle-exclamation fs-3 me-3"
+        style="color: #842029"
+      ></i>
+      <span class="fs-5 text-danger m-0"> <%= error %> </span>
+    </div>
+    <button
+      type="button"
+      class="btn-close ms-3"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <% } %>
+</div>
+<% } %>

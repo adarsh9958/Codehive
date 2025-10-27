@@ -1,0 +1,54 @@
+<% layout("./boilerplate/boilerplate") %>
+
+<!-- Include Bootstrap CSS in your <head> if not already -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+
+<div class="container mt-5 text-white">
+  <h2 class="mb-4">Create New Post</h2>
+  <form action="/posts" method="post" class="needs-validation" enctype="application/x-www-form-urlencoded" novalidate>
+    <div class="mb-3">
+      <label for="postTitle" class="form-label">Title</label>
+      <input
+        type="text"
+        name="post[title]"
+        class="form-control bg-secondary"
+        id="postTitle"
+        placeholder="Enter your title"
+        required
+      />
+      <div class="invalid-feedback">Title is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="postContent" class="form-label">Content</label>
+      <textarea
+        name="post[content]"
+        class="form-control bg-secondary"
+        id="postContent"
+        placeholder="Enter your content"
+        rows="6"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Content is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="postCode" class="form-label">Code</label>
+      <textarea
+        name="post[code]"
+        class="form-control bg-secondary"
+        id="postCode"
+        placeholder="Enter your code"
+        rows="6"
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please provide your code snippets</div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,68 @@
+<div
+  class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+  style="width: 280px; border-right: 1px solid #333"
+>
+  <div class="container">
+    <a
+      href="/"
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+    >
+      <i class="fa-solid fa-code"></i>
+      <span class="fs-4">CodeHive</span>
+    </a>
+    <hr />
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/posts" class="nav-link" aria-current="page">
+          <i class="fa-solid fa-house"></i>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <i class="fa-brands fa-internet-explorer"></i>
+          Explore
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <i class="fa-solid fa-bell"></i>
+          Notification
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <i class="fa-solid fa-message"></i>
+          Messages
+        </a>
+      </li>
+      <% if(currUser){ %>
+        <li>
+          <a href="/profile/<%= currUser.username %>" class="nav-link text-white">
+            <i class="fa-solid fa-user"></i>
+            Profile
+          </a>
+        </li>
+      <% } %>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <i class="fa-solid fa-user-group"></i>
+          Communities
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">
+          <i class="fa-solid fa-ellipsis"></i>
+          More
+        </a>
+      </li>
+
+      <li>
+        <a href="/posts/new" class="me-4">
+          <button class="post">Post</button>
+        </a>
+      </li>
+    </ul>
+    <hr />
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white align-items-center align-content-between bg-dark"
+    style="width: 280px; border-left: 1px solid #333;">
+    <div class="position-absolute top-0" style="height: 200px;">
+        <form class="d-flex pt-2">
+            <div class="position-relative w-100 d-flex g-2 m-2">
+                <i
+                    class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                <input id="userSearchInput" class="form-control me-2 bg-dark rounded-pill ps-5 p-2 text-white" type="search" placeholder="Search"
+                    aria-label="Search" style="background-color: black !important; border: 1px solid #3333338a;">
+                    <button class="btn btn-outline-success rounded-pill search-users">Search</button>
+            </div>
+        </form>
+
+        <div class="card mt-4 mb-2 border-dark"
+            style="width: 18rem; background-color: black !important; border-radius: 1rem !important;">
+            <div class="card-body">
+                <h5 class="card-title font text-white" style="font-weight: 800;">Subscribe to Premium</h5>
+                <p class="card-text text-white">Subscribe to unlock new features and if eligible, receive a share of revenue.</p>
+                <a href="#" class="btn btn-primary rounded-pill">Subscribe</a>
+            </div>
+        </div>
+    </div>
+    <!-- Default dropup button -->
+    <div class="user m-5 w-100">
+        <% if( !currUser) {%>
+            <a class="btn btn-outline-success  text-white w-100" href="/register">Signup</a>
+            <a class="btn btn-outline-success  text-white w-100" href="/login">Login</a>
+            <% } %>
+                <% if(currUser) {%>
+                    <form action="/logout" method="post">
+                        <button type="submit" class="btn btn-outline-danger  text-white w-100"
+                            style="margin-top: 50px;">LogOut</button>
+                    </form>
+                    <% } %>
+    </div>
+
+</div>

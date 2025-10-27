@@ -1,0 +1,57 @@
+<% layout("./boilerplate/boilerplate") -%>
+
+    <div class="register-container container text-white">
+        <h1 class="mb-4 text-center">Register Here</h1>
+        <form action="/register" method="POST" enctype="multipart/form-data" class="needs-validation m-3" novalidate>
+
+            <!-- Name -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control bg-dark text-white" id="name" name="user[name]" required>
+                <div class="invalid-feedback">
+                    Please enter your full name.
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control bg-dark text-white" id="username" name="user[username]" required>
+                <div class="invalid-feedback">
+                    Please choose a username.
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control bg-dark text-white" id="email" name="user[email]" required>
+                <div class="invalid-feedback">
+                    Please provide a valid email.
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control bg-dark text-white" id="password" name="user[password]"
+                    minlength="6" required>
+                <div class="invalid-feedback">
+                    Please enter a password (at least 6 characters).
+                </div>
+            </div>
+
+
+            <!-- Profile Image -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Profile Image</label>
+                <input class="form-control bg-dark text-white" type="file" id="image" name="user[image]" required>
+                <div class="invalid-feedback">
+                    Please upload your profile image.
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+    </div>

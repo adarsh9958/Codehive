@@ -1,0 +1,25 @@
+<% layout("./boilerplate/boilerplate") %>
+<div
+  class="alert alert-danger d-flex align-items-center rounded-pill p-2 m-4"
+  role="alert"
+  style="background-color: rgba(255, 0, 0, 0.144); color: rgba(255, 0, 0)"
+>
+  <svg
+    class="vw-4"
+    role="img"
+    aria-label="Danger:"
+    style="width: 10%; height: 30px"
+  >
+    <use xlink:href="#exclamation-triangle-fill" />
+  </svg>
+
+  <div class="ms-3"><%= message %></div>
+
+  <button
+    type="button"
+    class="btn-close ms-auto"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+    style="filter: invert(100%)"
+  ></button>
+</div>
